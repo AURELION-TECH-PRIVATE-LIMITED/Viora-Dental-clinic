@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { MapPin } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
-import heroImage from "@/assets/viora-hero.jpg";
+import clinicHeroVideo from "@/assets/clinic-hero.mp4";
+import clinicHeroPoster from "@/assets/clinic-hero-poster.jpg";
 import clinicPortrait from "@/assets/clinic-portrait.jpg";
 import doctorAyesha from "@/assets/doctor-ayesha-roul.jpg";
 import doctorKiran from "@/assets/doctor-kiran-kanar.png";
@@ -147,6 +149,43 @@ function Index() {
 }
 
 function Hero() {
+  const videoCardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const el = videoCardRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // React's `muted` prop doesn't always set the attribute in time for the
+    // browser's autoplay gate, so play() is called explicitly on mount.
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => {});
+
+    // Browsers pause background-tab video to save battery; resume it when
+    // the user comes back rather than leaving it stuck on one frame.
+    const onVisible = () => {
+      if (!document.hidden) video.play().catch(() => {});
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       <div className="viora-drift pointer-events-none absolute -top-32 -right-24 size-[46rem] rounded-full bg-sage/40 blur-3xl" />
@@ -192,14 +231,26 @@ function Hero() {
           </div>
           <div className="relative">
             <div className="absolute inset-0 rounded-[min(3vw,28px)] bg-frost/30 ring-1 ring-frost/50 backdrop-blur-md" />
-            <div className="relative grid gap-3 p-3">
-              <img
-                src={heroImage}
-                alt="A serene cream marble consultation counter with fresh eucalyptus at Viora"
+            <div
+              ref={videoCardRef}
+              className={`relative grid gap-3 p-3 transition-all duration-1000 ease-out ${
+                revealed ? "scale-100 opacity-100" : "scale-95 opacity-0"
+              }`}
+            >
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={clinicHeroPoster}
+                aria-label="A walkthrough of the Viora clinic reception area"
                 width={1080}
                 height={1200}
                 className="aspect-[4/5] w-full rounded-[min(3vw,28px)] object-cover"
-              />
+              >
+                <source src={clinicHeroVideo} type="video/mp4" />
+              </video>
             </div>
             <div className="absolute -bottom-6 -left-6 w-56 rounded-2xl bg-frost/60 p-5 ring-1 ring-ink/5 backdrop-blur-xl">
               <div className="flex items-center gap-1 text-champagne">

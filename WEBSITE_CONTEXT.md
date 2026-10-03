@@ -76,7 +76,19 @@ yet). Don't confuse the two folders or treat the Next.js one as current.
 - **Hero** — eyebrow tag, H1/subcopy, landmark cue ("In front of Jagannath
   Temple, Koel Nagar, Rourkela" linking to the real Maps place page), two
   CTAs ("Book a consultation" → `/book`, "View treatments" → `#treatments`),
-  hero image with a floating "4.7 · 12 Google reviews" badge (real data).
+  a looping autoplay/muted clinic walkthrough video (replacing the old
+  static hero image) with a floating "4.7 · 12 Google reviews" badge (real
+  data). Video: `src/assets/clinic-hero.mp4` (H.264, ~1.3MB, 3s loop,
+  converted with `ffmpeg` from the original `media/clinic video.mov` —
+  Chrome can't play `.mov` at all, needed a remux+re-encode to `.mp4`),
+  poster `src/assets/clinic-hero-poster.jpg` for instant paint before load.
+  Autoplay is triggered by an explicit `video.play()` on mount (React's
+  `muted` JSX prop doesn't reliably set the attribute in time for the
+  browser's autoplay gate — this is a known React/video gotcha), plus a
+  `visibilitychange` listener that resumes playback if the browser pauses
+  it for being backgrounded. A native `IntersectionObserver` (no new
+  library) drives a one-time fade/scale entrance animation on the video
+  card when the hero scrolls into view.
 - **Stats** — real data: 4.7★ Google rating, 12 Google reviews (2-tile
   centered row).
 - **Treatments** — 6 cards, now mapped to the verified service list (each
