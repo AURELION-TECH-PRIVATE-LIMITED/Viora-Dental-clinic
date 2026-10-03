@@ -8,7 +8,7 @@ import { useAutoplayVideo } from "@/hooks/use-autoplay-video";
 import clinicHeroVideo from "@/assets/clinic-hero.mp4";
 import clinicHeroPoster from "@/assets/clinic-hero-poster.jpg";
 import doctorAyesha from "@/assets/doctor-ayesha-roul.jpg";
-import doctorKiran from "@/assets/doctor-kiran-kanar.png";
+import doctorKiran from "@/assets/doctor-kiran-kanar.jpg";
 import treatCosmetic from "@/assets/treat-cosmetic.jpg";
 import treatSkin from "@/assets/treat-skin.jpg";
 import treatHygiene from "@/assets/treat-hygiene.jpg";
@@ -32,7 +32,11 @@ export const Route = createFileRoute("/")({
           "Precision dental care and unhurried aesthetic treatments in a calm, considered space.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og-image.jpg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/og-image.jpg" },
     ],
   }),
   component: Index,
@@ -71,10 +75,7 @@ const treatments = [
   },
 ];
 
-const stats = [
-  { value: "4.7★", label: "Google rating" },
-  { value: "12", label: "Google reviews" },
-];
+const stats = [{ value: "4.7★", label: "Google rating" }];
 
 const googleReviewsUrl =
   "https://www.google.com/maps/search/?api=1&query=Viora+Dental+And+Aesthetics+Raurkela";
@@ -199,7 +200,7 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="/book"
-                className="inline-flex items-center rounded-full bg-champagne px-6 py-3 text-sm font-medium text-ink ring-1 ring-champagne transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
+                className="inline-flex items-center rounded-full bg-champagne px-6 py-3 text-sm font-semibold text-bone ring-1 ring-champagne transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
               >
                 Book a consultation
               </a>
@@ -235,7 +236,7 @@ function Hero() {
               </video>
             </div>
             <div className="absolute -bottom-6 -left-6 w-56 rounded-2xl bg-frost/60 p-5 ring-1 ring-sage backdrop-blur-xl">
-              <div className="flex items-center gap-1 text-champagne">
+              <div className="flex items-center gap-1 text-champagne-text">
                 <span className="text-lg">★</span>
                 <span className="text-lg">★</span>
                 <span className="text-lg">★</span>
@@ -243,7 +244,7 @@ function Hero() {
                 <span className="text-lg">★</span>
               </div>
               <p className="mt-2 text-sm font-medium leading-snug text-balance">
-                Rated 4.7 · 12 Google reviews
+                Rated 4.7 on Google
               </p>
             </div>
           </div>
@@ -256,7 +257,7 @@ function Hero() {
 function Stats() {
   return (
     <section className="border-y border-sage bg-frost/40 backdrop-blur-md">
-      <div className="mx-auto grid max-w-xs grid-cols-2 divide-x divide-sage px-6 py-10">
+      <div className="mx-auto flex justify-center px-6 py-10">
         {stats.map((stat) => (
           <div key={stat.label} className="px-4 text-center">
             <div className="font-display text-3xl font-medium lg:text-4xl">{stat.value}</div>
@@ -277,7 +278,7 @@ function Treatments() {
       <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
               Treatments
             </span>
             <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[28ch]">
@@ -348,7 +349,7 @@ function Clinic() {
             </video>
           </div>
           <div className="max-w-xl">
-            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
               The clinic
             </span>
             <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[26ch]">
@@ -393,7 +394,7 @@ function Doctors() {
       <div className="viora-drift pointer-events-none absolute -bottom-24 -left-24 size-[30rem] rounded-full bg-sage/40 blur-3xl" />
       <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="mb-12 text-center">
-          <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+          <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
             The team
           </span>
           <h2 className="mx-auto mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[30ch]">
@@ -429,7 +430,7 @@ function Reviews() {
   return (
     <section id="reviews" className="mx-auto max-w-7xl scroll-mt-20 px-6 py-20 lg:px-10 lg:py-28">
       <div className="mb-12 text-center">
-        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
           Kind words
         </span>
         <h2 className="mx-auto mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[30ch]">
@@ -441,7 +442,7 @@ function Reviews() {
           rel="noopener noreferrer"
           className="mt-3 inline-block text-sm text-taupe underline underline-offset-4 hover:text-ink"
         >
-          4.7★ on Google · 12 reviews
+          4.7★ on Google
         </a>
       </div>
       <div className="grid gap-6 md:grid-cols-3">
@@ -477,7 +478,7 @@ function Book() {
         <div className="viora-drift-2 pointer-events-none absolute -bottom-24 -left-16 size-80 rounded-full bg-sage/30 blur-3xl" />
         <div className="relative grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
           <div className="max-w-xl">
-            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
               Visit us
             </span>
             <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[26ch]">
@@ -490,7 +491,7 @@ function Book() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="/book"
-                className="bg-champagne ring-champagne inline-flex items-center rounded-full px-6 py-3 text-sm font-medium text-ink ring-1 transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
+                className="bg-champagne ring-champagne inline-flex items-center rounded-full px-6 py-3 text-sm font-semibold text-bone ring-1 transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
               >
                 Book a consultation
               </a>
@@ -505,18 +506,23 @@ function Book() {
             </div>
           </div>
           <div className="bg-bone/60 ring-sage backdrop-blur-md grid gap-8 rounded-[min(2vw,20px)] p-6 ring-1 sm:grid-cols-2">
-            <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
-                Hours
-              </div>
-              <div className="mt-3 space-y-1 text-sm text-pretty text-taupe">
-                <div className="flex justify-between">
-                  <span>Tue – Sun</span>
-                  <span>10am – 8pm</span>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
+                  Days
                 </div>
-                <div className="flex justify-between">
-                  <span>Monday</span>
-                  <span>10am – 12pm</span>
+                <div className="mt-3 space-y-1 text-sm text-pretty text-taupe">
+                  <div>Monday</div>
+                  <div>Tue – Sun</div>
+                </div>
+              </div>
+              <div>
+                <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
+                  Hours
+                </div>
+                <div className="mt-3 space-y-1 text-sm text-pretty text-taupe">
+                  <div>10am – 12pm</div>
+                  <div>10am – 8pm</div>
                 </div>
               </div>
             </div>

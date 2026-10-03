@@ -29,6 +29,86 @@ etc., used by the 404/error pages in `__root.tsx`) were updated to match.
 `WhatsApp us` buttons keep the hardcoded `#25D366` brand green — not part
 of this palette, left alone intentionally.
 
+A `champagne-text` token (`#93616B`, same hue/chroma, darker lightness)
+exists specifically for champagne used **as text** on the bone background
+(eyebrow section labels, star rating) — the full-strength `champagne`
+measured 4.12:1 contrast there, short of WCAG AA's 4.5:1 for normal text;
+`champagne-text` hits 4.76:1. `champagne` itself is unchanged for
+backgrounds/buttons/decorative use, so the actual brand hex the owner gave
+is preserved everywhere it's visually the "accent color." The 3 primary
+"Book a consultation" buttons also switched from `text-ink font-medium` to
+`text-bone font-semibold` on their champagne/mauve backgrounds for the
+same reason (ink-on-champagne was 3.96:1, worse on the mauve hover state
+at 2.99:1).
+
+## Accessibility
+
+- `prefers-reduced-motion: reduce` is respected: the `viora-drift`/
+  `viora-drift-2` CSS animations are disabled via a media query in
+  `styles.css`, and `useAutoplayVideo` (`src/hooks/use-autoplay-video.ts`)
+  skips calling `play()` entirely when the user has that preference set —
+  both Hero's and Clinic's videos stay paused on their poster frame
+  instead of autoplaying.
+- See "Color palette" above for the `champagne-text` contrast fix.
+
+## SEO / sharing
+
+- **Favicon**: previously the default scaffold placeholder (an unrelated
+  orange/blue gradient heart icon). Regenerated from the real logo
+  (`src/assets/viora-logo.jpg`, cropped square) into `public/favicon.ico`,
+  `public/favicon-32x32.png`, and `public/apple-touch-icon.png`, all wired
+  up in `__root.tsx`'s `links`.
+- **Social share image** (`og:image`/`twitter:image`): previously unset —
+  since WhatsApp is the primary sharing/booking channel, any shared link
+  showed no preview thumbnail. `public/og-image.jpg` (1200×630) is cropped
+  from `media/Doctor details.png` (the logo + wordmark + doctor-names
+  lockup), referenced from both `__root.tsx` and `index.tsx`'s `head()`.
+  **Note:** `og:image` is currently set as a relative path (`/og-image.jpg`)
+  since the site has no production domain yet (not deployed/connected to
+  Lovable). Once it has a real domain, this should become an absolute URL
+  — some platforms require that for the preview to resolve correctly.
+- **Structured data**: a `Dentist` (schema.org) JSON-LD block was added
+  directly in `RootShell` in `__root.tsx` (not via the `head()` config) —
+  name, address, phone, geo coordinates, opening hours, and the real
+  4.7★/12-review aggregate rating. This is what enables Google to show
+  rich results (stars, hours, "open now") for local search. Note:
+  `reviewCount` is a fixed "12" — will go stale as reviews grow, but
+  removing it would invalidate the `aggregateRating` block entirely
+  (Google requires a count alongside the rating value). Left as-is
+  deliberately (2026-10-03) — revisit periodically.
+- **`public/sitemap.xml`** — lists `/` and `/book`, referenced from
+  `robots.txt`'s `Sitemap:` directive. **Both use a placeholder domain**
+  (`https://your-domain.example`) clearly commented in both files — sitemap
+  URLs must be absolute to validate, and there's no real production domain
+  yet. Replace before launch.
+
+## Dev environment notes
+
+- **Test suite**: `npx vitest run` (`src/test/app-routing.test.tsx`).
+  Two things were broken here and are now fixed:
+  1. `@testing-library/dom` was missing as an explicit devDependency —
+     `@testing-library/react@16` needs it as a peer dependency, and
+     `npm install --legacy-peer-deps` (used because `bun` isn't installed
+     on this machine) silently skipped it. Installed explicitly.
+  2. The test's `renderAt()` helper never called `router.load()` before
+     rendering — without it, `RouterProvider` never resolves the initial
+     route match in this memory-history test setup, so the DOM stays an
+     empty `<div />` and the `waitFor` assertion times out. Now `async`
+     and awaits `router.load()` first.
+  Also: `useAutoplayVideo` (`src/hooks/use-autoplay-video.ts`) now guards
+  `video.play()` with `?.catch()` instead of assuming it always returns a
+  Promise — jsdom's stub (used by the test environment) returns `undefined`
+  instead, which was crashing any component using the hook (Hero, Clinic)
+  whenever rendered under test, tripping the router's error boundary. This
+  is a real defensive fix, not test-only scaffolding.
+- **Package manager**: this repo's lockfile is `bun.lock` (bun is the
+  intended manager), but `bun` isn't installed on this machine, so this
+  session has used `npm install --legacy-peer-deps` throughout.
+  `package-lock.json` is gitignored since it's a local artifact, not the
+  project's real lockfile. Peer-dependency gaps like the one above are the
+  main risk of this workaround — if something seems to work in `bun` but
+  not here (or vice versa), check for a missing peer dep first.
+
 ## Business facts (verified, from the owner)
 
 - **Name:** Viora Dental And Aesthetics — a dental, multispecialty OPD, and
@@ -54,7 +134,9 @@ of this palette, left alone intentionally.
   (coords ~22.259492, 84.887972, used for the embedded map).
 - **Doctors** (credentials from `media/Doctor details.png`; real photos from
   `media/Dr Ayesha Roul.jpg` and `media/Dr Kiran Kumar Kanar.png`, now at
-  `src/assets/doctor-ayesha-roul.jpg` / `src/assets/doctor-kiran-kanar.png`):
+  `src/assets/doctor-ayesha-roul.jpg` / `src/assets/doctor-kiran-kanar.jpg` —
+  the latter was originally a 1.2MB PNG, converted to a 107KB JPEG since
+  it's a photo, not graphics; PNG's lossless compression was pure overhead):
   - Dr. Ayesha Roul — BDS, MDS — Reg. No. 2032(A)
   - Dr. Kiran Kumar Kanar — MBBS, DNB General Surgery — Reg. No. 20093
 - **Logo:** real clinic logo (gold tooth + face mark) saved at

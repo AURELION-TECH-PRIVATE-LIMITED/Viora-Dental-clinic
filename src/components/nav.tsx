@@ -4,10 +4,10 @@ import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/s
 import logo from "@/assets/viora-logo.jpg";
 
 const navLinks = [
+  { label: "Home", href: "/" },
   { label: "Treatments", href: "/#treatments" },
   { label: "The clinic", href: "/#clinic" },
   { label: "Doctors", href: "/#doctors" },
-  { label: "Reviews", href: "/#reviews" },
   { label: "Visit", href: "/#book" },
 ];
 
@@ -61,7 +61,7 @@ export function Nav() {
                 <SheetClose asChild>
                   <a
                     href="/book"
-                    className="mt-4 rounded-full bg-champagne px-4 py-3 text-center text-sm font-medium text-ink ring-1 ring-champagne transition-colors hover:bg-mauve hover:ring-mauve"
+                    className="mt-4 rounded-full bg-champagne px-4 py-3 text-center text-sm font-semibold text-bone ring-1 ring-champagne transition-colors hover:bg-mauve hover:ring-mauve"
                   >
                     Book a consultation
                   </a>

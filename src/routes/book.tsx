@@ -61,15 +61,15 @@ function BookPage() {
       <Nav />
 
       <section className="mx-auto max-w-2xl px-6 py-16 lg:px-10 lg:py-24">
-        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne-text">
           Book a consultation
         </span>
         <h1 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl">
           Let's find your time.
         </h1>
         <p className="mt-5 text-base leading-relaxed text-pretty text-taupe">
-          Fill this in and we'll confirm your visit over WhatsApp — unhurried,
-          honest, and entirely your pace.
+          Fill this in and we'll confirm your visit over WhatsApp — unhurried, honest, and entirely
+          your pace.
         </p>
 
         <form
@@ -106,11 +106,7 @@ function BookPage() {
               />
             </Field>
             <Field label="Preferred time">
-              <select
-                value={time}
-                onChange={(e) => setTime(e.target.value)}
-                className={inputClass}
-              >
+              <select value={time} onChange={(e) => setTime(e.target.value)} className={inputClass}>
                 {timeOptions.map((option) => (
                   <option key={option} value={option}>
                     {option}

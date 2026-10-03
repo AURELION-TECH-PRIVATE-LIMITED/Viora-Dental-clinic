@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER DOMAIN — replace https://your-domain.example with the real
+  production domain before this site goes live. Sitemap URLs must be
+  absolute to validate; this one isn't deployed anywhere yet.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://your-domain.example/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://your-domain.example/book</loc>
+    <priority>0.8</priority>
+  </url>
+</urlset>
