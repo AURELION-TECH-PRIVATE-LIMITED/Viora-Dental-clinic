@@ -12,4 +12,9 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Only takes effect outside Lovable's own sandbox build (which forces its
+  // own Cloudflare preset regardless) — this is what Netlify's build uses.
+  nitro: {
+    preset: "netlify",
+  },
 });
