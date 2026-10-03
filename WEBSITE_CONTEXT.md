@@ -4,6 +4,31 @@ Reference doc for future sessions. Covers the business, the site's current
 state, and known gaps. Not a replacement for reading the code — see
 `src/routes/index.tsx` for the actual page.
 
+## Color palette
+
+Defined in `src/styles.css` under "Viora palette" (all colors in oklch per
+that file's own convention — see the hex comments next to each var for the
+source value). Tokens keep their original names but hold new values as of
+2026-10-03 (owner-supplied palette):
+
+| Token | Hex | Role |
+|---|---|---|
+| `bone` | `#FAF8F5` | Canvas / page background |
+| `frost` | `#F4F1ED` | Surfaces / cards |
+| `champagne` | `#9E6B75` | Primary accent (buttons, labels) |
+| `mauve` | `#895862` | Primary hover/focus (repurposed from old decorative pink) |
+| `ink` | `#231818` | Primary text/headings |
+| `taupe` | `#6B6060` | Muted/body subtext (**new token**) |
+| `sage` | `#DFD9D2` | Borders/separators (repurposed from old decorative green) |
+
+`sage` and `mauve` are also still used for the decorative hero/book-section
+blur blobs and the Clinic section's trust-list dots — repointing them kept
+those effects in-palette without touching any markup. The generic shadcn
+tokens (`--background`, `--foreground`, `--primary`, `--border`, `--ring`,
+etc., used by the 404/error pages in `__root.tsx`) were updated to match.
+`WhatsApp us` buttons keep the hardcoded `#25D366` brand green — not part
+of this palette, left alone intentionally.
+
 ## Business facts (verified, from the owner)
 
 - **Name:** Viora Dental And Aesthetics — a dental, multispecialty OPD, and
@@ -73,6 +98,15 @@ yet). Don't confuse the two folders or treat the Next.js one as current.
 
 `Nav → Hero → Stats → Treatments → Clinic → Doctors → Reviews → Book → Footer`
 
+Hero, Treatments, Clinic, Doctors, and the home-page Book section all share
+the same ambient background: 3 large blurred, slowly drifting circles
+(`viora-drift`/`viora-drift-2` CSS animations in `styles.css`) in
+sage/champagne/mauve at 30–40% opacity, `pointer-events-none`, positioned
+differently per section so it doesn't read as a copy-paste. Each of those
+sections needs a `relative overflow-hidden` outer wrapper with the blobs
+as the first children, then the actual content in a `relative` div after
+them — follow that pattern if adding this effect to another section.
+
 - **Hero** — eyebrow tag, H1/subcopy, landmark cue ("In front of Jagannath
   Temple, Koel Nagar, Rourkela" linking to the real Maps place page), two
   CTAs ("Book a consultation" → `/book`, "View treatments" → `#treatments`),
@@ -96,11 +130,14 @@ yet). Don't confuse the two folders or treat the Next.js one as current.
   Root canal & extractions, Tooth-coloured fillings, Teeth capping &
   crowns, Implants & oral surgery, Rhinoplasty support, Skin & aesthetic
   care. The `/book` page's treatment dropdown mirrors these exact titles.
+  Has the same ambient drift-blob background as Hero (see below).
 - **Clinic** — portrait image + 3 generic trust bullets (board-certified,
-  transparent pricing, calm environment).
+  transparent pricing, calm environment). Same ambient drift-blob
+  background as Hero, layered on top of its existing `bg-frost/40` tint.
 - **Doctors** — real names/credentials/photos (see Business facts above),
   photo cards (aspect 4:5, `object-top` crop since source photos are tall
-  phone shots with the face near the top).
+  phone shots with the face near the top). Same ambient drift-blob
+  background as Hero.
 - **Reviews** — 3 real Google reviews (Yash Chhatwani, Anjana Sahu, Kirti
   Pattnaik) with a "4.7★ on Google · 12 reviews" link to the real listing.
 - **Book** (home section, id="book") — "Book a consultation" (now links to

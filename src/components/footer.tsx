@@ -1,14 +1,14 @@
 export function Footer() {
   return (
-    <footer className="bg-bone border-t border-ink/5">
+    <footer className="bg-bone border-t border-sage">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-6 py-10 lg:flex-row lg:px-10">
         <div className="text-center lg:text-left">
           <div className="font-display text-xl font-medium">Viora</div>
-          <p className="mt-1 text-xs text-ink/50">
+          <p className="mt-1 text-xs text-taupe">
             Dental &amp; aesthetic clinic — calm, clinical care.
           </p>
         </div>
-        <div className="flex items-center gap-6 text-sm text-ink/60">
+        <div className="flex items-center gap-6 text-sm text-taupe">
           <a href="/#treatments" className="transition-colors hover:text-ink">
             Treatments
           </a>
@@ -22,7 +22,7 @@ export function Footer() {
             Book
           </a>
         </div>
-        <div className="text-xs text-ink/40">© 2026 Viora Clinic</div>
+        <div className="text-xs text-taupe">© 2026 Viora Clinic</div>
       </div>
     </footer>
   );

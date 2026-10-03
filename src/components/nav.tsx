@@ -18,18 +18,18 @@ const navLinks = [
 
 export function Nav() {
   return (
-    <nav className="sticky top-0 z-50 bg-bone/70 ring-1 ring-ink/5 backdrop-blur-xl">
+    <nav className="sticky top-0 z-50 bg-bone/70 ring-1 ring-sage backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <a href="/" className="flex items-center gap-2">
           <img src={logo} alt="Viora" className="size-9 rounded-full object-cover" />
           <span className="font-display text-2xl font-medium tracking-tight">
             Viora
           </span>
-          <span className="hidden text-[11px] uppercase tracking-[0.25em] text-ink/40 sm:inline">
+          <span className="hidden text-[11px] uppercase tracking-[0.25em] text-taupe sm:inline">
             dental &amp; aesthetic clinic
           </span>
         </a>
-        <div className="hidden items-center gap-8 text-sm text-ink/70 lg:flex">
+        <div className="hidden items-center gap-8 text-sm text-taupe lg:flex">
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -52,7 +52,7 @@ export function Nav() {
               <button
                 type="button"
                 aria-label="Open menu"
-                className="inline-flex items-center justify-center rounded-full p-2 text-ink ring-1 ring-ink/10 lg:hidden"
+                className="inline-flex items-center justify-center rounded-full p-2 text-ink ring-1 ring-sage lg:hidden"
               >
                 <Menu className="size-5" />
               </button>
@@ -65,7 +65,7 @@ export function Nav() {
                 <SheetClose key={link.href} asChild>
                   <a
                     href={link.href}
-                    className="rounded-lg px-3 py-3 text-base text-ink/80 transition-colors hover:bg-frost/50 hover:text-ink"
+                    className="rounded-lg px-3 py-3 text-base text-taupe transition-colors hover:bg-frost/50 hover:text-ink"
                   >
                     {link.label}
                   </a>
@@ -74,7 +74,7 @@ export function Nav() {
               <SheetClose asChild>
                 <a
                   href="/book"
-                  className="mt-4 rounded-full bg-champagne px-4 py-3 text-center text-sm font-medium text-ink ring-1 ring-champagne"
+                  className="mt-4 rounded-full bg-champagne px-4 py-3 text-center text-sm font-medium text-ink ring-1 ring-champagne transition-colors hover:bg-mauve hover:ring-mauve"
                 >
                   Book a consultation
                 </a>

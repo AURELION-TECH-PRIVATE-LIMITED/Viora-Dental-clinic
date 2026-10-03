@@ -67,14 +67,14 @@ function BookPage() {
         <h1 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl">
           Let's find your time.
         </h1>
-        <p className="mt-5 text-base leading-relaxed text-pretty text-ink/70">
+        <p className="mt-5 text-base leading-relaxed text-pretty text-taupe">
           Fill this in and we'll confirm your visit over WhatsApp — unhurried,
           honest, and entirely your pace.
         </p>
 
         <form
           onSubmit={handleSubmit}
-          className="mt-10 space-y-6 rounded-[min(3vw,28px)] bg-frost/40 p-6 ring-1 ring-ink/5 backdrop-blur-xl lg:p-8"
+          className="mt-10 space-y-6 rounded-[min(3vw,28px)] bg-frost/40 p-6 ring-1 ring-sage backdrop-blur-xl lg:p-8"
         >
           <div className="grid gap-6 sm:grid-cols-2">
             <Field label="Name">
@@ -150,7 +150,7 @@ function BookPage() {
           </button>
         </form>
 
-        <p className="mt-6 text-sm text-ink/60">
+        <p className="mt-6 text-sm text-taupe">
           Prefer to call?{" "}
           <a href="tel:+918280810002" className="underline underline-offset-4 hover:text-ink">
             +91 82808 10002
@@ -164,7 +164,7 @@ function BookPage() {
 }
 
 const inputClass =
-  "w-full rounded-xl bg-bone/60 px-4 py-3 text-sm text-ink ring-1 ring-ink/10 placeholder:text-ink/40 focus:outline-none focus:ring-2 focus:ring-champagne";
+  "w-full rounded-xl bg-bone/60 px-4 py-3 text-sm text-ink ring-1 ring-sage placeholder:text-taupe focus:outline-none focus:ring-2 focus:ring-mauve";
 
 function Field({
   label,
@@ -177,7 +177,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className ?? ""}`}>
-      <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/50">
+      <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
         {label}
       </span>
       <div className="mt-2">{children}</div>

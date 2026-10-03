@@ -194,22 +194,21 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-6 pt-16 pb-16 lg:px-10 lg:pt-24 lg:pb-24">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-frost/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-ink/60 ring-1 ring-ink/5 backdrop-blur-md">
+            <span className="inline-flex items-center gap-2 rounded-full bg-frost/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-taupe ring-1 ring-sage backdrop-blur-md">
               Dental &amp; aesthetic clinic
             </span>
             <h1 className="mt-6 font-display text-5xl font-medium leading-none tracking-tight text-balance sm:text-6xl lg:text-7xl xl:max-w-[24ch]">
               The quiet art of a confident smile.
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-pretty text-ink/70 lg:text-lg sm:max-w-[52ch]">
-              Viora blends precise dental care with unhurried aesthetic
-              treatments — a calm, considered space where every visit feels
-              like a slow exhale.
+            <p className="mt-6 text-base leading-relaxed text-pretty text-taupe lg:text-lg sm:max-w-[52ch]">
+              Viora blends precise dental care with unhurried aesthetic treatments — a calm,
+              considered space where every visit feels like a slow exhale.
             </p>
             <a
               href="https://www.google.com/maps/place/Viora+Dental+And+Aesthetics/@22.259492,84.8853971,17z/data=!3m1!4b1!4m6!3m5!1s0x3a201d0030ea9613:0xda7a119b73fc9893!8m2!3d22.259492!4d84.887972!16s%2Fg%2F11zdf39qcl"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-flex items-center gap-1.5 text-sm text-ink/60 hover:text-ink"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm text-taupe hover:text-ink"
             >
               <MapPin className="size-4 shrink-0" />
               In front of Jagannath Temple, Koel Nagar, Rourkela
@@ -217,13 +216,13 @@ function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="/book"
-                className="inline-flex items-center rounded-full bg-champagne px-6 py-3 text-sm font-medium text-ink ring-1 ring-champagne transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center rounded-full bg-champagne px-6 py-3 text-sm font-medium text-ink ring-1 ring-champagne transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
               >
                 Book a consultation
               </a>
               <a
                 href="#treatments"
-                className="inline-flex items-center rounded-full bg-frost/50 px-6 py-3 text-sm font-medium text-ink ring-1 ring-ink/5 backdrop-blur-md transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center rounded-full bg-frost/50 px-6 py-3 text-sm font-medium text-ink ring-1 ring-sage backdrop-blur-md transition-transform hover:-translate-y-0.5"
               >
                 View treatments
               </a>
@@ -252,7 +251,7 @@ function Hero() {
                 <source src={clinicHeroVideo} type="video/mp4" />
               </video>
             </div>
-            <div className="absolute -bottom-6 -left-6 w-56 rounded-2xl bg-frost/60 p-5 ring-1 ring-ink/5 backdrop-blur-xl">
+            <div className="absolute -bottom-6 -left-6 w-56 rounded-2xl bg-frost/60 p-5 ring-1 ring-sage backdrop-blur-xl">
               <div className="flex items-center gap-1 text-champagne">
                 <span className="text-lg">★</span>
                 <span className="text-lg">★</span>
@@ -273,16 +272,12 @@ function Hero() {
 
 function Stats() {
   return (
-    <section className="border-y border-ink/5 bg-frost/40 backdrop-blur-md">
-      <div className="mx-auto grid max-w-xs grid-cols-2 divide-x divide-ink/5 px-6 py-10">
+    <section className="border-y border-sage bg-frost/40 backdrop-blur-md">
+      <div className="mx-auto grid max-w-xs grid-cols-2 divide-x divide-sage px-6 py-10">
         {stats.map((stat) => (
           <div key={stat.label} className="px-4 text-center">
-            <div className="font-display text-3xl font-medium lg:text-4xl">
-              {stat.value}
-            </div>
-            <div className="mt-1 text-xs uppercase tracking-[0.15em] text-ink/50">
-              {stat.label}
-            </div>
+            <div className="font-display text-3xl font-medium lg:text-4xl">{stat.value}</div>
+            <div className="mt-1 text-xs uppercase tracking-[0.15em] text-taupe">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -292,48 +287,48 @@ function Stats() {
 
 function Treatments() {
   return (
-    <section
-      id="treatments"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-20 lg:px-10 lg:py-28"
-    >
-      <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-        <div>
-          <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
-            Treatments
-          </span>
-          <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[28ch]">
-            Considered care, from hygiene to harmony.
-          </h2>
-        </div>
-        <p className="max-w-sm text-sm leading-relaxed text-pretty text-ink/60">
-          Every plan begins with a quiet consultation — no pressure, no
-          upsell, only what your smile and skin actually need.
-        </p>
-      </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {treatments.map((treatment) => (
-          <div
-            key={treatment.title}
-            className="group rounded-[min(2vw,20px)] bg-frost/50 p-3 ring-1 ring-ink/5 backdrop-blur-md transition-transform hover:-translate-y-1"
-          >
-            <img
-              src={treatment.image}
-              alt={treatment.title}
-              loading="lazy"
-              width={928}
-              height={720}
-              className="aspect-[5/4] w-full rounded-[min(2vw,16px)] object-cover"
-            />
-            <div className="p-4">
-              <h3 className="font-display text-xl font-medium">
-                {treatment.title}
-              </h3>
-              <p className="mt-1 text-sm leading-relaxed text-pretty text-ink/60">
-                {treatment.copy}
-              </p>
-            </div>
+    <section id="treatments" className="relative scroll-mt-20 overflow-hidden">
+      <div className="viora-drift pointer-events-none absolute -top-24 -left-24 size-[40rem] rounded-full bg-sage/40 blur-3xl" />
+      <div className="viora-drift-2 pointer-events-none absolute top-1/2 -right-32 size-[36rem] -translate-y-1/2 rounded-full bg-champagne/35 blur-3xl" />
+      <div className="viora-drift pointer-events-none absolute -bottom-32 left-1/3 size-[32rem] rounded-full bg-mauve/30 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mb-12 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+              Treatments
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[28ch]">
+              Considered care, from hygiene to harmony.
+            </h2>
           </div>
-        ))}
+          <p className="max-w-sm text-sm leading-relaxed text-pretty text-taupe">
+            Every plan begins with a quiet consultation — no pressure, no upsell, only what your
+            smile and skin actually need.
+          </p>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {treatments.map((treatment) => (
+            <div
+              key={treatment.title}
+              className="group rounded-[min(2vw,20px)] bg-frost/50 p-3 ring-1 ring-sage backdrop-blur-md transition-transform hover:-translate-y-1"
+            >
+              <img
+                src={treatment.image}
+                alt={treatment.title}
+                loading="lazy"
+                width={928}
+                height={720}
+                className="aspect-[5/4] w-full rounded-[min(2vw,16px)] object-cover"
+              />
+              <div className="p-4">
+                <h3 className="font-display text-xl font-medium">{treatment.title}</h3>
+                <p className="mt-1 text-sm leading-relaxed text-pretty text-taupe">
+                  {treatment.copy}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -341,8 +336,14 @@ function Treatments() {
 
 function Clinic() {
   return (
-    <section id="clinic" className="scroll-mt-20 bg-frost/40 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+    <section
+      id="clinic"
+      className="relative scroll-mt-20 overflow-hidden bg-frost/40 backdrop-blur-md"
+    >
+      <div className="viora-drift pointer-events-none absolute -top-32 right-0 size-[38rem] rounded-full bg-champagne/35 blur-3xl" />
+      <div className="viora-drift-2 pointer-events-none absolute bottom-0 -left-24 size-[34rem] rounded-full bg-sage/40 blur-3xl" />
+      <div className="viora-drift pointer-events-none absolute top-1/3 left-1/2 size-[30rem] -translate-x-1/2 rounded-full bg-mauve/30 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
             <div className="absolute -inset-3 rounded-[min(3vw,32px)] bg-gradient-to-br from-sage/30 via-frost/20 to-champagne/30 blur-xl" />
@@ -362,27 +363,26 @@ function Clinic() {
             <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[26ch]">
               A calm, clinical hand — never rushed.
             </h2>
-            <p className="mt-6 text-base leading-relaxed text-pretty text-ink/70">
-              Our specialists pair exacting technique with a warm, spa-like
-              pace, so you feel looked after from the first hello to the final
-              polish.
+            <p className="mt-6 text-base leading-relaxed text-pretty text-taupe">
+              Our specialists pair exacting technique with a warm, spa-like pace, so you feel looked
+              after from the first hello to the final polish.
             </p>
             <ul className="mt-8 space-y-4">
               <li className="flex items-start gap-3">
                 <span className="bg-champagne mt-1 size-2 shrink-0 rounded-full" />
-                <span className="text-sm leading-relaxed text-pretty text-ink/70">
+                <span className="text-sm leading-relaxed text-pretty text-taupe">
                   Board-certified dentists and aesthetics practitioners
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-sage mt-1 size-2 shrink-0 rounded-full" />
-                <span className="text-sm leading-relaxed text-pretty text-ink/70">
+                <span className="text-sm leading-relaxed text-pretty text-taupe">
                   Transparent pricing and honest, unhurried consults
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="bg-mauve mt-1 size-2 shrink-0 rounded-full" />
-                <span className="text-sm leading-relaxed text-pretty text-ink/70">
+                <span className="text-sm leading-relaxed text-pretty text-taupe">
                   A calm, spa-warm treatment environment
                 </span>
               </li>
@@ -396,39 +396,39 @@ function Clinic() {
 
 function Doctors() {
   return (
-    <section
-      id="doctors"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-20 lg:px-10 lg:py-28"
-    >
-      <div className="mb-12 text-center">
-        <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
-          The team
-        </span>
-        <h2 className="mx-auto mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[30ch]">
-          Meet your specialists.
-        </h2>
-      </div>
-      <div className="mx-auto grid max-w-2xl gap-6 sm:grid-cols-2">
-        {doctors.map((doctor) => (
-          <div
-            key={doctor.name}
-            className="overflow-hidden rounded-[min(2vw,20px)] bg-frost/50 ring-1 ring-ink/5 backdrop-blur-md"
-          >
-            <img
-              src={doctor.photo}
-              alt={doctor.name}
-              loading="lazy"
-              className="aspect-[4/5] w-full object-cover object-top"
-            />
-            <div className="p-5">
-              <div className="font-display text-lg font-medium">
-                {doctor.name}
+    <section id="doctors" className="relative scroll-mt-20 overflow-hidden">
+      <div className="viora-drift pointer-events-none absolute -top-28 right-1/4 size-[36rem] rounded-full bg-mauve/30 blur-3xl" />
+      <div className="viora-drift-2 pointer-events-none absolute bottom-0 -right-32 size-[34rem] rounded-full bg-champagne/35 blur-3xl" />
+      <div className="viora-drift pointer-events-none absolute -bottom-24 -left-24 size-[30rem] rounded-full bg-sage/40 blur-3xl" />
+      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
+        <div className="mb-12 text-center">
+          <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
+            The team
+          </span>
+          <h2 className="mx-auto mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[30ch]">
+            Meet your specialists.
+          </h2>
+        </div>
+        <div className="mx-auto grid max-w-2xl gap-6 sm:grid-cols-2">
+          {doctors.map((doctor) => (
+            <div
+              key={doctor.name}
+              className="overflow-hidden rounded-[min(2vw,20px)] bg-frost/50 ring-1 ring-sage backdrop-blur-md"
+            >
+              <img
+                src={doctor.photo}
+                alt={doctor.name}
+                loading="lazy"
+                className="aspect-[4/5] w-full object-cover object-top"
+              />
+              <div className="p-5">
+                <div className="font-display text-lg font-medium">{doctor.name}</div>
+                <div className="text-sm text-taupe">{doctor.credentials}</div>
+                <div className="text-xs text-taupe">{doctor.regNo}</div>
               </div>
-              <div className="text-sm text-ink/60">{doctor.credentials}</div>
-              <div className="text-xs text-ink/40">{doctor.regNo}</div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -436,10 +436,7 @@ function Doctors() {
 
 function Reviews() {
   return (
-    <section
-      id="reviews"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 py-20 lg:px-10 lg:py-28"
-    >
+    <section id="reviews" className="mx-auto max-w-7xl scroll-mt-20 px-6 py-20 lg:px-10 lg:py-28">
       <div className="mb-12 text-center">
         <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">
           Kind words
@@ -451,7 +448,7 @@ function Reviews() {
           href={googleReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-3 inline-block text-sm text-ink/60 underline underline-offset-4 hover:text-ink"
+          className="mt-3 inline-block text-sm text-taupe underline underline-offset-4 hover:text-ink"
         >
           4.7★ on Google · 12 reviews
         </a>
@@ -460,11 +457,9 @@ function Reviews() {
         {reviews.map((review) => (
           <div
             key={review.name}
-            className="rounded-[min(2vw,20px)] bg-frost/50 p-6 ring-1 ring-ink/5 backdrop-blur-md"
+            className="rounded-[min(2vw,20px)] bg-frost/50 p-6 ring-1 ring-sage backdrop-blur-md"
           >
-            <p className="text-sm leading-relaxed text-pretty text-ink/70">
-              "{review.quote}"
-            </p>
+            <p className="text-sm leading-relaxed text-pretty text-taupe">"{review.quote}"</p>
             <div className="mt-6 flex items-center gap-3">
               <span
                 className={`grid size-10 place-items-center rounded-full font-display text-sm font-medium text-ink ${review.tone}`}
@@ -473,7 +468,7 @@ function Reviews() {
               </span>
               <div>
                 <div className="text-sm font-medium">{review.name}</div>
-                <div className="text-xs text-ink/50">{review.treatment}</div>
+                <div className="text-xs text-taupe">{review.treatment}</div>
               </div>
             </div>
           </div>
@@ -485,11 +480,8 @@ function Reviews() {
 
 function Book() {
   return (
-    <section
-      id="book"
-      className="mx-auto max-w-7xl scroll-mt-20 px-6 pb-20 lg:px-10 lg:pb-28"
-    >
-      <div className="relative overflow-hidden rounded-[min(3vw,32px)] bg-frost/40 p-8 ring-1 ring-ink/5 backdrop-blur-xl lg:p-12">
+    <section id="book" className="mx-auto max-w-7xl scroll-mt-20 px-6 pb-20 lg:px-10 lg:pb-28">
+      <div className="relative overflow-hidden rounded-[min(3vw,32px)] bg-frost/40 p-8 ring-1 ring-sage backdrop-blur-xl lg:p-12">
         <div className="viora-drift pointer-events-none absolute -top-20 -right-20 size-80 rounded-full bg-champagne/30 blur-3xl" />
         <div className="viora-drift-2 pointer-events-none absolute -bottom-24 -left-16 size-80 rounded-full bg-sage/30 blur-3xl" />
         <div className="relative grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
@@ -500,14 +492,14 @@ function Book() {
             <h2 className="mt-3 font-display text-4xl font-medium leading-none tracking-tight text-balance lg:text-5xl sm:max-w-[26ch]">
               Reserve your quiet hour.
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-pretty text-ink/70">
-              Book a consultation and we'll build a plan around you —
-              unhurried, honest, and entirely your pace.
+            <p className="mt-5 text-base leading-relaxed text-pretty text-taupe">
+              Book a consultation and we'll build a plan around you — unhurried, honest, and
+              entirely your pace.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
                 href="/book"
-                className="bg-champagne ring-champagne inline-flex items-center rounded-full px-6 py-3 text-sm font-medium text-ink ring-1 transition-transform hover:-translate-y-0.5"
+                className="bg-champagne ring-champagne inline-flex items-center rounded-full px-6 py-3 text-sm font-medium text-ink ring-1 transition-colors transition-transform hover:-translate-y-0.5 hover:bg-mauve hover:ring-mauve"
               >
                 Book a consultation
               </a>
@@ -521,12 +513,12 @@ function Book() {
               </a>
             </div>
           </div>
-          <div className="bg-bone/60 ring-ink/5 backdrop-blur-md grid gap-8 rounded-[min(2vw,20px)] p-6 ring-1 sm:grid-cols-2">
+          <div className="bg-bone/60 ring-sage backdrop-blur-md grid gap-8 rounded-[min(2vw,20px)] p-6 ring-1 sm:grid-cols-2">
             <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/50">
+              <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
                 Hours
               </div>
-              <div className="mt-3 space-y-1 text-sm text-pretty text-ink/70">
+              <div className="mt-3 space-y-1 text-sm text-pretty text-taupe">
                 <div className="flex justify-between">
                   <span>Tue – Sun</span>
                   <span>10am – 8pm</span>
@@ -538,13 +530,13 @@ function Book() {
               </div>
             </div>
             <div>
-              <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-ink/50">
+              <div className="text-[11px] font-medium uppercase tracking-[0.15em] text-taupe">
                 Contact
               </div>
-              <div className="mt-3 space-y-1 text-sm text-pretty text-ink/70">
+              <div className="mt-3 space-y-1 text-sm text-pretty text-taupe">
                 <div>
-                  1st floor, A576, Koel Nagar A Block, Rourkela, Odisha
-                  769014. In front of Jagannath Temple
+                  1st floor, A576, Koel Nagar A Block, Rourkela, Odisha 769014. In front of
+                  Jagannath Temple
                 </div>
                 <div>
                   <a href="tel:+918280810002" className="hover:text-ink">
@@ -554,7 +546,7 @@ function Book() {
               </div>
             </div>
             <div className="sm:col-span-2">
-              <div className="overflow-hidden rounded-[min(1.5vw,14px)] ring-1 ring-ink/5">
+              <div className="overflow-hidden rounded-[min(1.5vw,14px)] ring-1 ring-sage">
                 <iframe
                   src={mapEmbedUrl}
                   title="Viora Dental And Aesthetics location"
@@ -566,7 +558,7 @@ function Book() {
                 href="https://www.google.com/maps/place/Viora+Dental+And+Aesthetics/@22.259492,84.8853971,17z/data=!3m1!4b1!4m6!3m5!1s0x3a201d0030ea9613:0xda7a119b73fc9893!8m2!3d22.259492!4d84.887972!16s%2Fg%2F11zdf39qcl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-block text-sm text-ink/60 underline underline-offset-4 hover:text-ink"
+                className="mt-2 inline-block text-sm text-taupe underline underline-offset-4 hover:text-ink"
               >
                 Get directions
               </a>
@@ -577,4 +569,3 @@ function Book() {
     </section>
   );
 }
-
