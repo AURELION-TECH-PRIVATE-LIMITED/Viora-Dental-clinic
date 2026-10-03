@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { useAutoplayVideo } from "@/hooks/use-autoplay-video";
 import clinicHeroVideo from "@/assets/clinic-hero.mp4";
 import clinicHeroPoster from "@/assets/clinic-hero-poster.jpg";
-import clinicPortrait from "@/assets/clinic-portrait.jpg";
 import doctorAyesha from "@/assets/doctor-ayesha-roul.jpg";
 import doctorKiran from "@/assets/doctor-kiran-kanar.png";
 import treatCosmetic from "@/assets/treat-cosmetic.jpg";
@@ -150,7 +150,7 @@ function Index() {
 
 function Hero() {
   const videoCardRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useAutoplayVideo<HTMLVideoElement>();
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
@@ -167,23 +167,6 @@ function Hero() {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    // React's `muted` prop doesn't always set the attribute in time for the
-    // browser's autoplay gate, so play() is called explicitly on mount.
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    video.play().catch(() => {});
-
-    // Browsers pause background-tab video to save battery; resume it when
-    // the user comes back rather than leaving it stuck on one frame.
-    const onVisible = () => {
-      if (!document.hidden) video.play().catch(() => {});
-    };
-    document.addEventListener("visibilitychange", onVisible);
-    return () => document.removeEventListener("visibilitychange", onVisible);
   }, []);
 
   return (
@@ -335,6 +318,8 @@ function Treatments() {
 }
 
 function Clinic() {
+  const videoRef = useAutoplayVideo<HTMLVideoElement>();
+
   return (
     <section
       id="clinic"
@@ -347,14 +332,20 @@ function Clinic() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="relative">
             <div className="absolute -inset-3 rounded-[min(3vw,32px)] bg-gradient-to-br from-sage/30 via-frost/20 to-champagne/30 blur-xl" />
-            <img
-              src={clinicPortrait}
-              alt="A calm dental specialist smiling softly at the Viora clinic"
-              loading="lazy"
+            <video
+              ref={videoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              poster={clinicHeroPoster}
+              aria-label="A walkthrough of the Viora clinic reception area"
               width={1080}
-              height={1080}
-              className="relative aspect-square w-full rounded-[min(3vw,28px)] object-cover"
-            />
+              height={1350}
+              className="relative aspect-[4/5] w-full rounded-[min(3vw,28px)] object-cover"
+            >
+              <source src={clinicHeroVideo} type="video/mp4" />
+            </video>
           </div>
           <div className="max-w-xl">
             <span className="text-[11px] font-medium uppercase tracking-[0.2em] text-champagne">

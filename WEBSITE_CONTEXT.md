@@ -91,6 +91,11 @@ yet). Don't confuse the two folders or treat the Next.js one as current.
   mobile hamburger → `Sheet` (from `components/ui/sheet.tsx`) with the same
   links plus a "Book a consultation" CTA. Used on both pages.
 - `src/components/footer.tsx` — logo wordmark + 4 links, also shared.
+- `src/hooks/use-autoplay-video.ts` — `useAutoplayVideo<T>()` returns a ref
+  for a muted/looping `<video>`; handles the explicit `play()`-on-mount
+  workaround and `visibilitychange` resume. Used by both Hero and Clinic's
+  videos — reuse this instead of duplicating the autoplay logic if another
+  video gets added anywhere else.
 
 ## Site structure
 
@@ -116,13 +121,10 @@ them — follow that pattern if adding this effect to another section.
   converted with `ffmpeg` from the original `media/clinic video.mov` —
   Chrome can't play `.mov` at all, needed a remux+re-encode to `.mp4`),
   poster `src/assets/clinic-hero-poster.jpg` for instant paint before load.
-  Autoplay is triggered by an explicit `video.play()` on mount (React's
-  `muted` JSX prop doesn't reliably set the attribute in time for the
-  browser's autoplay gate — this is a known React/video gotcha), plus a
-  `visibilitychange` listener that resumes playback if the browser pauses
-  it for being backgrounded. A native `IntersectionObserver` (no new
-  library) drives a one-time fade/scale entrance animation on the video
-  card when the hero scrolls into view.
+  Autoplay is handled by the shared `useAutoplayVideo` hook (see below). A
+  native `IntersectionObserver` (no new library) also drives a one-time
+  fade/scale entrance animation on the video card when the hero scrolls
+  into view (Hero only, not Clinic's video).
 - **Stats** — real data: 4.7★ Google rating, 12 Google reviews (2-tile
   centered row).
 - **Treatments** — 6 cards, now mapped to the verified service list (each
@@ -131,9 +133,13 @@ them — follow that pattern if adding this effect to another section.
   crowns, Implants & oral surgery, Rhinoplasty support, Skin & aesthetic
   care. The `/book` page's treatment dropdown mirrors these exact titles.
   Has the same ambient drift-blob background as Hero (see below).
-- **Clinic** — portrait image + 3 generic trust bullets (board-certified,
-  transparent pricing, calm environment). Same ambient drift-blob
-  background as Hero, layered on top of its existing `bg-frost/40` tint.
+- **Clinic** — same clinic walkthrough video as Hero (`clinic-hero.mp4`,
+  `aspect-[4/5]`, same autoplay hook), not a static image anymore — the old
+  `clinic-portrait.jpg` stock photo is deleted. Deliberately the same loop
+  as Hero (owner's choice — only footage available). Plus 3 generic trust
+  bullets (board-certified, transparent pricing, calm environment). Same
+  ambient drift-blob background as Hero, layered on top of its existing
+  `bg-frost/40` tint.
 - **Doctors** — real names/credentials/photos (see Business facts above),
   photo cards (aspect 4:5, `object-top` crop since source photos are tall
   phone shots with the face near the top). Same ambient drift-blob
